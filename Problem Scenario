@@ -1,0 +1,5 @@
+Problem Scenario
+
+A bank needs to manage different customer account states (active, suspended, closed)
+with specific behaviors regarding transactions (deposit, withdraw) and information access.
+The current approach uses conditional statements within the Account class, which becomes cumbersome as states and logic increase.
