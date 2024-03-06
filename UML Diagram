@@ -1,0 +1,35 @@
++-------------------+        +-------------------+        +-------------------+
+|      Account      | ----> | AccountState     | ----> | ActiveState      |
+|                   |        | (interface)     |        |                   |
+| +----------------+ |        +-------------------+        +-------------------+
+| - accountNumber    |        | + abstract methods |        | - deposit(acc,amt)|
+| - balance         |        | for common actions |        | - withdraw(acc,amt)|
+| - accountState    |        | + concrete states  |        | - suspend(acc)     |
+| +----------------+ |        +-------------------+        | - activate(acc)    |
+| + getAccountNumber|        |                   |        | - close(acc)      |
+| + setAccountNumber|        |                   |        +-------------------+
+| + getBalance      |        |                   |
+| + setBalance      |        |                   |
+| + setState        |        |                   |
+| + deposit         |        +-------------------+        +-------------------+
+| + withdraw        |        |                   |        | - deposit(acc,amt)|
+| + suspend         |        |                   |        | - withdraw(acc,amt)|
+| + activate        |        |                   |        | - suspend(acc)     |
+| + close           |        |                   |        | - activate(acc)    |
+| + toString        |        |                   |        | - close(acc)      |
++-------------------+        +-------------------+        +-------------------+
+
+      +-------------------+        +-------------------+
+      | SuspendedState   |        | ClosedState       |
+      |                   |        |                   |
+      +-------------------+        +-------------------+
+      | - deposit(acc,amt)|        | - deposit(acc,amt)| (Not allowed)
+      | - withdraw(acc,amt)|        | - withdraw(acc,amt)| (Not allowed)
+      | - suspend(acc)     |        | - suspend(acc)     | (Not allowed)
+      | - activate(acc)    |        | - activate(acc)    | (Not allowed)
+      | - close(acc)      |        | - close(acc)      | (Not allowed)
+      +-------------------+        +-------------------+
+
+Legend:
+- Solid line arrow: Inheritance
+- Dashed line arrow: Implements (interface)
