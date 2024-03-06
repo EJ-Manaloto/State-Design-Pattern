@@ -2,15 +2,15 @@ public class ActiveState implements AccountState {
 
     @Override
     public void deposit(Account account, double amount) {
-        account.balance += amount;
-        System.out.println("Deposited: $" + amount + ". New balance: $" + account.balance);
+        account.setBalance(account.getBalance() + amount); // Access balance through getter and setter
+        System.out.println("Deposited: $" + amount + ". New balance: $" + account.getBalance());
     }
 
     @Override
     public void withdraw(Account account, double amount) {
-        if (account.balance >= amount) {
-            account.balance -= amount;
-            System.out.println("Withdrew: $" + amount + ". New balance: $" + account.balance);
+        if (account.getBalance() >= amount) {  // Access balance through getter
+            account.setBalance(account.getBalance() - amount); // Access balance through getter and setter
+            System.out.println("Withdrew: $" + amount + ". New balance: $" + account.getBalance());
         } else {
             System.out.println("Insufficient funds.");
         }
@@ -18,7 +18,7 @@ public class ActiveState implements AccountState {
 
     @Override
     public void suspend(Account account) {
-        account.setState(new SuspendedState());
+        account.changeState(new SuspendedState());
         System.out.println("Account suspended!");
     }
 
@@ -29,7 +29,7 @@ public class ActiveState implements AccountState {
 
     @Override
     public void close(Account account) {
-        account.setState(new ClosedState());
+        account.changeState(new ClosedState());
         System.out.println("Account closed!");
     }
 }
