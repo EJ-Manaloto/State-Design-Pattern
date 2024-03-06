@@ -1,4 +1,5 @@
-public interface AccountState {
+public interface AccountState 
+{
     void deposit(Account account, double amount);
     void withdraw(Account account, double amount);
     void suspend(Account account);
